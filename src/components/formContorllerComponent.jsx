@@ -66,12 +66,12 @@ class FormController extends Component {
 
         <h3 className="small-header">Номер документа</h3>
         <div className="input-wrapper">
-          {/* <input
+          <input
             name="doc_number"
             className="input"
             onChange={e => this.handleChange(e)}
             value={this.state.doc_number}
-          /> */}
+          />
         </div>
 
         <h2 className="middle-header">Итоги</h2>
