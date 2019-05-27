@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+      /* Стилизовать форму я, конечно же, не стал. */
+      table,
+      th,
+      td {
+        border: 1px solid gray;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+
+  <!-- Сделал только часть отчета -->
+  <body>
+    <h1>Редактирование отчета о заказах</h1>
+    <div id='my-div'></div>
+    <form id='myForm' action="/submit">
+
+    <section class="section">
+      <h3 class="section__header">Инфа о документах</h3>
+
+      <div class="section____block">
+        <p class="section____block__header">Юрлицо</p>
+        <div id="legal-id-input"></div>
+        <select type="text">
+          <option id="legal_id-input"></option>
+        </select>
+      </div>
+
+      <div class="section____block">
+        <p class="section____block__header">Начало периода</p>
+        <input name="start_date-input" id="start_date-input" type="text" />
+      </div>
+      <div class="section____block">
+        <p class="section____block__header">Конец периода</p>
+        <input id="end_date-input" type="text" />
+      </div>
+      <div class="номер доsection__">
+        <p class="section__block__header">Номер документа</p>
+        <input id="doc_number-input" type="text" />
+      </div>
+    </section>
+
+    <section class="section">
+      <h3 class="section__header">Инфа о заказах</h3>
+      <table class="section-table section-table">
+        <tr class="section-table-row border">
+          <th>Точка</th>
+          <th>Способ оплаты</th>
+          <th>Количество реализованных операций</th>
+          <th>Общая сумма реализованных операций</th>
+          <th>Вознаграждение исполнителя</th>
+          <th>Абонентская плата</th>
+        </tr>
+        <tr class="section-table-row border">
+          <th id="venue_name-td" rowspan="3"></th>
+          <th>Наличный расчет</th>
+          <th>15</th>
+          <th>10682.17</th>
+          <th>534.11</th>
+          <th rowspan="3">3000</th>
+        </tr>
+        <tr class="section-table-row border">
+          <th>Безналчиный расчет</th>
+          <th>16</th>
+          <th>12584.85</th>
+          <th>627.44</th>
+        </tr>
+        <tr class="section-table-row border">
+          <th>Картой курьеру</th>
+          <th>21</th>
+          <th>15103</th>
+          <th>755.15</th>
+        </tr>
+      </table>
+
+     
+    </section>
+
+    <input type="submit" value='Сохранить' id="save-button" class="save-button"></input>
+    
+  </form>
+    <script>
+
+/* Забираем данные из report JSON и вставляем их в соответствующие части отчета */
+      (document.onload = () =>
+        fetch("report.json").then(response => response.json())
+
+          .then(
+            data => (
+              (document.getElementById("legal_id-input").innerHTML =
+                data.legal_id),
+              (document.getElementById("start_date-input").value =
+                data.start_date),
+              (document.getElementById("end_date-input").value = data.end_date),
+              (document.getElementById("doc_number-input").value =
+                data.doc_number),
+              (document.getElementById("venue_name-td").innerHTML =
+                data.fee_data.venue_summaries[0].venue_name)
+            ),
+
+      
+          ))();
+
+       
+          /* Посылаем данные формы на сервер */
+
+          myForm.addEventListener('submit', async function(e) {         
+            e.preventDefault();
+            let formData = new FormData(this); 
+            await fetch('report.json', {            
+              mode: 'no-cors',
+              method: 'post',
+              credentials: 'include',  
+              body: JSON.stringify(formData),              
+            })
+            .then(function(response) {   
+           
+              console.log(response.text());
+  
+            })
+
+
+         
+          })
+
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+@mixin redborder {
+  border: 1px solid red;
+}
+
+.selector {
+  display: inline-block;
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid grey;
+  background: inherit;
+  border-bottom: 0px;
+  appearance: none;
+  z-index: 10;
+  position: relative;
+}
+
+.after-select {
+  position: absolute;
+  margin-top: 5px;
+  right: 17px;
+  z-index: 9;
+  font: {
+    size: 0.6rem;
+  }
+}
+
+.input-wrapper {
+  border-bottom: 1px solid grey;
+  margin-bottom: 10px;
+  //   @include redborder;
+}
+
+.input {
+  width: 100%;
+  border: none;
+}
+
+.small-header {
+  margin: 0;
+}
+
+/* FormContorller styles */
+.header {
+  margin: 0;
+  font: {
+    family: sans-serif;
+    weight: 100;
+    size: 1.3rem;
+  }
+  -webkit-font-smoothing: antialiased;
+  color: rgb(72, 71, 71);
+}
+
+.middle-header {
+  margin-top: 6px;
+  font: {
+    family: sans-serif;
+    weight: 500;
+    size: 1rem;
+  }
+  -webkit-font-smoothing: antialiased;
+  //   color: rgb(72, 71, 71);
+}
+
+// this.setState({ [e.name]: e.value });
+
+.small-header {
+  margin-top: 0px;
+  font: {
+    family: sans-serif;
+    weight: 500;
+    size: 0.8rem;
+  }
+  -webkit-font-smoothing: antialiased;
+  //   color: rgb(72, 71, 71);
+}
+
+/* FormViewOrder styles */
+
+table,
+th,
+td {
+  border: 1px solid gray;
+  border-collapse: collapse;
+  font: {
+    family: sans-serif;
+    weight: 500;
+    size: 0.8rem;
+  }
+  -webkit-font-smoothing: antialiased;
+}
+th {
+  font: {
+    family: sans-serif;
+    weight: 550;
+    size: 0.8rem;
+  }
+  -webkit-font-smoothing: antialiased;
+  background: #ffffff;
+}
+
+.save-button {
+  background-color: #e5ffe2;
+  width: 200px;
+  border: 1px solid gray;
+  margin-top: 10px;
+  padding: 5px;
+}
